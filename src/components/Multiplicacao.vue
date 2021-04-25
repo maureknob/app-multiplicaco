@@ -46,23 +46,19 @@
       </v-col>
 
       <v-col cols="12" v-if="calculo == true">
-        <v-card>
-          <v-card-title>Qual a resposta certa?</v-card-title>
-          <v-row justify="center">
-              <v-col cols="3" v-for="r in listaRespostas" :key="r">
-                  <v-btn>{{r}}</v-btn>
-              </v-col>
-          </v-row>
-        </v-card>
+        <Alternativas @recarregar="recarregar" :resposta="resposta" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import Alternativas from '../components/Respostas/Alternativas';
 export default {
   name: "Multiplicação",
-
+  components: {
+    Alternativas,
+  },
   data: () => ({
     multiplicador: null,
     multiplicando: null,
@@ -75,15 +71,9 @@ export default {
   methods: {
     calcularResposta() {
       this.resposta = this.multiplicador * this.multiplicando;
-      this.listaRespostas = [
-          Math.floor(Math.random() * 82),
-          Math.floor(Math.random() * 82),
-          Math.floor(Math.random() * 82),
-          Math.floor(Math.random() * 82)
-          ];
-
-      var respostaPos = Math.floor(Math.random() * 4);
-      this.listaRespostas[respostaPos] = this.resposta;
+    },
+    recarregar() {
+       this.$emit('recarregar');
     }
   },
   computed: {

@@ -38,7 +38,7 @@
     </v-app-bar>
 
     <v-main>
-      <Multiplicacao/>
+      <Multiplicacao @recarregar='recarregar' :key='this.chave'/>
     </v-main>
   </v-app>
 </template>
@@ -52,9 +52,13 @@ export default {
   components: {
     Multiplicacao,
   },
-
+  methods: {
+    recarregar() {
+      this.chave++;
+    }
+},
   data: () => ({
-    //
+    chave: 0,
   }),
 };
 </script>
