@@ -30,6 +30,7 @@ export default {
   }),
   computed: {
     arrayRespostas() {
+      var respostaPos = Math.floor(Math.random() * 4);
       var lista = [
         Math.floor(Math.random() * 82),
         Math.floor(Math.random() * 82),
@@ -37,8 +38,10 @@ export default {
         Math.floor(Math.random() * 82)
       ];
 
-      var respostaPos = Math.floor(Math.random() * 4);
-      lista[respostaPos] = this.resposta;
+      if (!(lista.includes(this.resposta))) {
+        lista[respostaPos] = this.resposta;
+      }
+
       return lista;
     }
   },
@@ -48,10 +51,12 @@ export default {
         this.text = "Parabéns! Você acertou a resposta!";
         this.snackbar = true;
       } else {
-        this.text = "Não foi desta vez. Tente novamente!",
-        this.snackbar = true;
+        (this.text = "Não foi desta vez. Tente novamente!"),
+          (this.snackbar = true);
       }
-      setTimeout(() => {  this.$emit('recarregar'); }, 2000);
+      setTimeout(() => {
+        this.$emit("recarregar");
+      }, 2000);
     }
   }
 };

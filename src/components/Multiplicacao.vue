@@ -8,7 +8,7 @@
       <v-col cols="12">
         <v-card>
           <v-card-title>
-            <v-row justify="center" class="ma-2">
+            <div class="ma-auto d-inline-flex">
               <div class="display-1 mr-5">Quanto é</div>
               <div class="entrada">
                 <v-text-field
@@ -18,7 +18,7 @@
                 ></v-text-field>
               </div>
 
-              <p class="display-1 mr-5 ml-5">x</p>
+              <div class="display-1 mr-5 ml-5">x</div>
               <div class="entrada">
                 <v-text-field
                   v-mask="'#'"
@@ -26,16 +26,16 @@
                   v-model.number="multiplicando"
                 ></v-text-field>
               </div>
-            </v-row>
+            </div>
           </v-card-title>
           <v-row justify="space-around" no-gutters v-if="calculo == true">
-            <v-col cols="4" v-for="n in multiplicador" :key="n">
-              <v-card width="33,3%" class="ma-5 pa-5 yellow accent-1">
+            <v-col cols="6" sm="4" md="4" v-for="n in multiplicador" :key="n">
+              <v-card class="ma-2 blue lighten-1">
                 <v-card-title>{{n}}</v-card-title>
-                <v-card-text class="ma-5 pa-5">
+                <v-card-text>
                   <v-row>
-                    <v-col cols="4" v-for="y in multiplicando" :key="y">
-                      <v-icon class="outlined green lighten-2">{{y}}</v-icon>
+                    <v-col cols="6" sm="6" md="4" v-for="y in multiplicando" :key="y">
+                      <v-icon class="outlined amber lighten-2 red--text lighten-1--text">{{y}}</v-icon>
                     </v-col>
                   </v-row>
                 </v-card-text>
@@ -45,7 +45,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" v-if="calculo == true">
+      <v-col cols="12" class="mb-10" v-if="calculo == true">
         <Alternativas @recarregar="recarregar" :resposta="resposta" />
       </v-col>
     </v-row>
@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import Alternativas from '../components/Respostas/Alternativas';
+import Alternativas from "../components/Respostas/Alternativas";
 export default {
   name: "Multiplicação",
   components: {
-    Alternativas,
+    Alternativas
   },
   data: () => ({
     multiplicador: null,
@@ -73,7 +73,7 @@ export default {
       this.resposta = this.multiplicador * this.multiplicando;
     },
     recarregar() {
-       this.$emit('recarregar');
+      this.$emit("recarregar");
     }
   },
   computed: {
@@ -91,6 +91,7 @@ export default {
 
 <style lang="scss" scoped>
 .v-icon.outlined {
+  font-size: 2rem;
   border: 1px solid currentColor;
   border-radius: 50%;
   height: 56px;
@@ -98,6 +99,6 @@ export default {
 }
 
 .entrada {
-  width: 2vw;
+  width: 5vw;
 }
 </style>
