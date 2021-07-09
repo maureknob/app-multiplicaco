@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "skulpt": "^1.2.0",
     "v-mask": "^2.2.4",
     "vue": "^2.6.11",
+    "vue-codemirror": "^4.0.6",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
